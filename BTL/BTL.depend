@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1721618813 source:c:\users\acer\onedrive\documents\github\ltnc_projectgame\btl\btl.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<cstdlib>
+	<sstream>
+	<SDL_ttf.h>
+	<vector>
+	<iostream>
+	<SDL_mixer.h>
+	<cmath>
+	"LTexture.h"
+
+1682245445 c:\users\acer\onedrive\documents\github\ltnc_projectgame\btl\ltexture.h
+

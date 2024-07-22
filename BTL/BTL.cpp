@@ -209,3 +209,6 @@ Mix_Chunk* gPickItem = NULL;
 
 Mix_Chunk* gMenuClick = NULL;
 Mix_Chunk* gMenuMotion = NULL;
+int main(int argc, char* args[]){
+
+}
