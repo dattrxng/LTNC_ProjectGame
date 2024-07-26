@@ -209,6 +209,16 @@ Mix_Chunk* gPickItem = NULL;
 
 Mix_Chunk* gMenuClick = NULL;
 Mix_Chunk* gMenuMotion = NULL;
+//food
+#include "Food.h"
+//shuriken
+#include "Shuriken.h"
+//LTimer
+#include "LTimer.h"
+//enemy
+#include "Enemy.h"
+//Dot
+#include "Dot.h"
 int main(int argc, char* args[]){
 
 }
