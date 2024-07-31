@@ -219,6 +219,191 @@ Mix_Chunk* gMenuMotion = NULL;
 #include "Enemy.h"
 //Dot
 #include "Dot.h"
+bool init()
+{
+	//Initialization flag
+	bool success = true;
+
+	//Initialize SDL
+	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+	{
+		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+		success = false;
+	}
+	else
+	{
+		//Set texture filtering to linear
+		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
+		{
+			printf( "Warning: Linear texture filtering not enabled!" );
+		}
+
+		//Create window
+		gWindow = SDL_CreateWindow( "DinoRun", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		if( gWindow == NULL )
+		{
+			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+			success = false;
+		}
+		else
+		{
+			//Create vsynced renderer for window
+			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+			if( gRenderer == NULL )
+			{
+				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+				success = false;
+			}
+			else
+			{
+				//Initialize renderer color
+				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+
+				//Initialize PNG loading
+				int imgFlags = IMG_INIT_PNG;
+				if( !( IMG_Init( imgFlags ) & imgFlags ) )
+				{
+					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+					success = false;
+				}
+				if( TTF_Init() == -1 )
+				{
+					printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
+					success = false;
+				}
+
+				if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+				{
+					printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+					success = false;
+				}
+			}
+		}
+	}
+
+	if (success)
+    {
+        SDL_Surface* icon = IMG_Load("logo.png");
+        SDL_SetWindowIcon(gWindow,icon);
+    }
+    return success;
+}
+bool loadMedia()
+{
+	//Loading success flag
+	bool success = true;
+	if( !Map_IMG.loadFromFile( "menu_map.png" ) )
+	{
+		printf( "Failed to load map texture!\n" );
+		success = false;
+	}
+    if( !button_img.loadFromFile( "button.png" ) )
+	{
+		printf( "Failed to load button texture!\n" );
+		success = false;
+	}
+	if( !gHeart_Data.loadFromFile( "data_tmp.png" ) )
+	{
+		printf( "Failed to load heartdata texture!\n" );
+		success = false;
+	}
+	if( !Score_Data.loadFromFile( "data_tmp.png" ) )
+	{
+		printf( "Failed to load score data texture!\n" );
+		success = false;
+	}
+	for(int i=0;i<NUM_ITEM_PAUSE;i++)
+    {
+         if( !button_pause_img[i].loadFromFile( "motion_button.png" ) )
+        {
+            printf( "Failed to load button texture!\n" );
+            success = false;
+        }
+    }
+    for(int i=0;i<NUM_ITEM_GAMEOVER;i++)
+    {
+         if( !button_gameover_img[i].loadFromFile( "motion_button.png" ) )
+        {
+            printf( "Failed to load button texture!\n" );
+            success = false;
+        }
+    }
+    if( !gGameOver_IMG.loadFromFile( "gameover.png" ) )
+	{
+		printf( "Failed to load button texture!\n" );
+		success = false;
+	}
+	if( !gPause_IMG.loadFromFile( "pause_img.png" ) )
+	{
+		printf( "Failed to load button texture!\n" );
+		success = false;
+	}
+	if( !pause_on_play.loadFromFile( "motion_button.png" ) )
+	{
+		printf( "Failed to load mottion button texture!\n" );
+		success = false;
+	}
+    if( !gMenu_IMG.loadFromFile( "menu.png" ) )
+	{
+		printf( "Failed to load background texture!\n" );
+		success = false;
+	}
+	if( !gTutorial_IMG.loadFromFile( "tutorial.png" ) )
+	{
+		printf( "Failed to load background texture!\n" );
+		success = false;
+	}
+
+	if( !gBackground.loadFromFile( "theway.jpg" ) )
+	{
+		printf( "Failed to load background texture!\n" );
+		success = false;
+	}
+
+
+	//Load press texture
+    gFont = TTF_OpenFont( "font.ttf", 42 );
+    if( gFont == NULL )
+    {
+        printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
+
+    }
+
+    //end font
+    //sound
+	gKunai = Mix_LoadWAV( "kunaieffect.wav" );
+	if( gKunai == NULL )
+	{
+		printf( "Failed to load kunai sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+		success = false;
+	}
+	gEnemyHurt = Mix_LoadWAV( "enemy_hurt.mp3" );
+	if( gEnemyHurt == NULL )
+	{
+		printf( "Failed to load enemy sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+		success = false;
+	}
+	gPickItem = Mix_LoadWAV( "pickitem.wav" );
+	if( gPickItem == NULL )
+	{
+		printf( "Failed to load kunai sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+		success = false;
+	}
+	gMenuClick = Mix_LoadWAV( "menu_click.mp3" );
+	if( gMenuClick == NULL )
+	{
+		printf( "Failed to load menuclick sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+		success = false;
+	}
+	gMenuMotion = Mix_LoadWAV( "menu_motion.wav" );
+	if( gMenuMotion == NULL )
+	{
+		printf( "Failed to load menumotion sound effect! SDL_mixer Error: %s\n", Mix_GetError() );
+		success = false;
+	}
+
+	//end sound
+}
 int main(int argc, char* args[]){
 
 }
