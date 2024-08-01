@@ -404,6 +404,97 @@ bool loadMedia()
 
 	//end sound
 }
+void close()
+{
+    gPause_IMG.free();
+    gGameOver_IMG.free();
+    pause_on_play.free();
+    button_img.free();
+    Map_IMG.free();
+
+	for (int i=0;i<NUM_IMG_DOT_STAND;i++)
+	gDotTexture_Stand[i].free();
+	for (int i=0;i<NUM_IMG_LEVEL;i++)
+	LevelTexture[i].free();
+
+	for (int i=0;i<NUM_IMG_DOT_MOVE;i++)
+	gDotTexture_Move[i].free();
+
+    for (int i=0;i<NUM_ITEM_PAUSE;i++)
+	button_pause_img[i].free();
+
+    for (int i=0;i<NUM_ITEM_PAUSE;i++)
+	gTextPause[i].free();
+
+	for (int i=0;i<NUM_ITEM_GAMEOVER;i++)
+	button_gameover_img[i].free();
+
+    for (int i=0;i<NUM_ITEM_GAMEOVER;i++)
+	gTextGameOver[i].free();
+
+    gMenu_IMG.free();
+    gTutorial_IMG.free();
+	for (int i=0;i<NUM_IMG_FOOD_HEART;i++)
+    gFoodTexture1[i].free();
+    for (int i=0;i<NUM_IMG_FOOD_RED;i++)
+    gFoodTexture_Red[i].free();
+    for (int i=0;i<NUM_IMG_FOOD_YELLOW;i++)
+    gFoodTexture_Yellow[i].free();
+    for (int i=0;i<NUM_IMG_FOOD_PURPLE;i++)
+    gFoodTexture_Purple[i].free();
+
+    for (int i=0;i<NUM_IMG_AMO_DOT;i++)
+    gShurikenTexture[i].free();
+    for (int i=0;i<NUM_IMG_SPECIAL_AMO;i++)
+    gShurikenTexture_SPECIAL[i].free();
+
+    for (int i=0;i<NUM_IMG_AMO_ENEMY2;i++)
+    gShuriken2Texture[i].free();
+
+    gBackground.free();
+    for (int i=0;i<NUM_IMG_ENEMY1;i++)
+    gEnemy1Texture[i].free();
+    for (int i=0;i<NUM_IMG_ENEMY2;i++)
+    gEnemy2Texture[i].free();
+    for (int i=0;i<NUM_IMG_ENEMY3;i++)
+    gEnemy3Texture[i].free();
+    for (int i=0;i<NUM_IMG_EXPLOSION;i++)
+    gExplosion[i].free();
+    gHeart_Data.free();
+    Score_Data.free();
+    TTF_CloseFont( gFont );
+	gFont = NULL;
+
+    gTextTexture.free();
+    gTextTexture2.free();
+    gTextTexture3.free();
+    for (int i =0 ;i<NUM_ITEM_MENU;i++)
+    gTextMenu[i].free();
+    gTutorial_Text.free();
+	//Destroy window
+	SDL_DestroyRenderer( gRenderer );
+	SDL_DestroyWindow( gWindow );
+	gWindow = NULL;
+	gRenderer = NULL;
+
+	Mix_FreeChunk(gKunai);
+    gKunai = NULL;
+    Mix_FreeChunk(gEnemyHurt);
+    gEnemyHurt = NULL;
+    Mix_FreeChunk(gPickItem);
+    gPickItem = NULL;
+    Mix_FreeChunk(gMenuClick);
+    gMenuClick = NULL;
+    Mix_FreeChunk(gMenuMotion);
+    gMenuMotion = NULL;
+
+	//Quit SDL subsystems
+	TTF_Quit();
+	IMG_Quit();
+	SDL_Quit();
+	Mix_Quit();
+}
+
 int main(int argc, char* args[]){
 
 }
