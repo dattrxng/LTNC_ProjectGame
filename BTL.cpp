@@ -651,6 +651,7 @@ void close()
 }
 bool checkCollision( SDL_Rect a, SDL_Rect b )
 {
+
     //The sides of the rectangles
     int leftA, leftB;
     int rightA, rightB;
@@ -693,39 +694,172 @@ bool checkCollision( SDL_Rect a, SDL_Rect b )
     //If none of the sides from A are outside B
     return true;
 }
-int main(int argc, char* args[]){
-   freopen("highscore.txt","r",stdin);
-   if( !init() )
-	{
-		printf( "Failed to initialize!\n" );
-	}
-	else
-	{
-		//Load media
-		if( !loadMedia() )
-		{
-			printf( "Failed to load media!\n" );
-		}
-		else
-		{
-
-		    LTimer fpsTimer;
-		    LTimer capTimer;
-		    int countedFrames = 0;
-			fpsTimer.start();
-			//Main loop flag
-
-            int check_pause;
-            int check_gameover;
-            enum TypeScreen
+int set_map ()
+{
+    Map_IMG.render(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+        SDL_Rect button[3];
+        button[0] = {45,277,108,188};
+        button[1] = {190,278,110,191};
+        button[2] = {346,273,110,188};
+    SDL_Event setmap_event;
+    int x_mouse=0,y_mouse=0;
+    bool click = false;
+    while (true)
+    {
+        while (SDL_PollEvent(&setmap_event))
+        {
+            switch (setmap_event.type)
             {
-                NONE_ = 0,
-                MENU_ = 1,
-                PAUSE_ = 2,
-                GAMEOVER_ = 3
-            };
-            int type_screen = MENU_;
+                case SDL_QUIT:
+                    return 1;
+                case SDL_MOUSEMOTION:
+                    {
 
-      }
+                    }
+                    break;
+                    case SDL_MOUSEBUTTONDOWN:
+                    {
+                         x_mouse = setmap_event.motion.x;
+                         y_mouse = setmap_event.motion.y;
+                         for (int i=0;i<3;i++)
+                         {
+                             if (x_mouse >=button[i].x && x_mouse <= button[i].x+button[i].w && y_mouse >= button[i].y && y_mouse <=button[i].y+button[i].h)
+                             {
+
+                                Mix_PlayChannel( -1, gMenuClick, 0 );
+                                if (i==0)
+                                {
+                                    gBackground.loadFromFile( "theway3.png" );
+                                }
+                                else if (i==1)
+                                {
+                                    gBackground.loadFromFile("theway.jpg");
+                                }
+                                else if (i==2)
+                                {
+                                    gBackground.loadFromFile("theway2.png");
+                                }
+                                return 0;
+                             }
+                         }
+                    break;
+                    }
+                    default:
+                    break;
+                    }
+                }
+            SDL_RenderPresent( gRenderer );
+        }
+
+    return 1;//quit
+}
+int tutorial()
+{
+    gTutorial_IMG.render(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+    SDL_Color white = { 255,255,255};
+    if( !gTutorial_Text.loadFromRenderedText("PLAY GAME" ,white ) )
+        {
+            printf( "Failed to render text texture!\n" );
+        }
+        SDL_Rect button;
+        button = {77,592,354,92};
+    SDL_Event tutorial_event;
+    int x_mouse=0,y_mouse=0;
+    bool click = false;
+    while (true)
+    {
+        gTutorial_Text.render(122,608,252,58);
+
+        while (SDL_PollEvent(&tutorial_event))
+        {
+            switch (tutorial_event.type)
+            {
+                case SDL_QUIT:
+                    return 1;
+                case SDL_MOUSEMOTION:
+                    {
+                     x_mouse = tutorial_event.motion.x;
+                     y_mouse = tutorial_event.motion.y;
+                         if (x_mouse >=button.x && x_mouse <= button.x+button.w && y_mouse >= button.y && y_mouse <=button.y+button.h)
+                         {
+                             gTutorial_Text.setColor(255,0,127);
+                         }
+                         else
+                         {
+                             gTutorial_Text.setColor(138,43,226);
+                         }
+                     }
+                    break;
+                    case SDL_MOUSEBUTTONDOWN:
+                    {
+                         x_mouse = tutorial_event.motion.x;
+                         y_mouse = tutorial_event.motion.y;
+                             if (x_mouse >=button.x && x_mouse <= button.x+button.w && y_mouse >= button.y && y_mouse <=button.y+button.h)
+                             {
+                                 click = true;
+                                 if (click == true) {Mix_PlayChannel( -1, gMenuClick, 0 );click=false;}
+                                 return 0;
+                             }
+                   // break;
+                    }
+                    default:
+                    break;
+                    }
+                }
+            SDL_RenderPresent( gRenderer );
+        }
+
+    return 1;
+}
+
+int main( int argc, char* args[] )
+{
+
+    freopen("highscore.txt","r",stdin);
+    std::cin >> HIGH_SCORE;
+
+    if( !init() )
+    {
+        printf( "Failed to initialize!\n" );
     }
+    else
+    {
+        if( !loadMedia() )
+        {
+            printf( "Failed to load media!\n" );
+        }
+        else
+        {
+
+            bool quit = false;
+            SDL_Event e;
+            while( !quit )
+            {
+
+                while( SDL_PollEvent( &e ) != 0 )
+                {
+
+                    if( e.type == SDL_QUIT )
+                    {
+                        quit = true;
+                    }
+
+                }
+
+                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+                SDL_RenderClear( gRenderer );
+
+                int menuWidth = 800;
+                int menuHeight = 600;
+                gMenu_IMG.render(0, 0, menuWidth, menuHeight, NULL, 0.0, NULL, SDL_FLIP_NONE);
+
+                SDL_RenderPresent( gRenderer );
+            }
+        }
+    }
+
+
+    close();
+
+    return 0;
 }
