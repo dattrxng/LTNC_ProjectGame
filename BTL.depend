@@ -15,3 +15,35 @@
 
 1682245445 c:\users\acer\onedrive\documents\github\ltnc_projectgame\btl\ltexture.h
 
+1722787297 source:c:\users\acer\onedrive\documents\github\ltnc_projectgame\btl.cpp
+	<SDL.h>
+	<SDL_image.h>
+	<stdio.h>
+	<string>
+	<cstdlib>
+	<sstream>
+	<SDL_ttf.h>
+	<vector>
+	<iostream>
+	<SDL_mixer.h>
+	<cmath>
+	"LTexture.h"
+	"Food.h"
+	"Shuriken.h"
+	"LTimer.h"
+	"Enemy.h"
+	"Dot.h"
+
+1682245445 c:\users\acer\onedrive\documents\github\ltnc_projectgame\ltexture.h
+
+1721965981 c:\users\acer\onedrive\documents\github\ltnc_projectgame\food.h
+
+1682404813 c:\users\acer\onedrive\documents\github\ltnc_projectgame\shuriken.h
+
+1679578194 c:\users\acer\onedrive\documents\github\ltnc_projectgame\ltimer.h
+
+1684506380 c:\users\acer\onedrive\documents\github\ltnc_projectgame\enemy.h
+
+1683819316 c:\users\acer\onedrive\documents\github\ltnc_projectgame\dot.h
+	"Shuriken.h"
+

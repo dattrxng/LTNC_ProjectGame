@@ -403,6 +403,161 @@ bool loadMedia()
 	}
 
 	//end sound
+
+	//FOOD
+	for (int i=0;i<NUM_IMG_FOOD_HEART;i++)
+    {
+        path_img_food_heart = path_img_food_heart + "heart_removebg/heart (" + char(i+1+'0') + ").png";
+        if( !gFoodTexture1[i].loadFromFile(path_img_food_heart ) )
+        {
+            printf( "Failed to load food texture!\n" );
+
+        }
+        path_img_food_heart="";
+    }
+    for (int i=0;i<NUM_IMG_FOOD_RED;i++)
+    {
+        path_img_food_red = path_img_food_red + "redorb_removebg/redorb (" + char(i+1+'0') + ").png";
+        if( !gFoodTexture_Red[i].loadFromFile(path_img_food_red ) )
+        {
+            printf( "Failed to load food texture!\n" );
+
+        }
+        path_img_food_red="";
+    }
+    for (int i=0;i<NUM_IMG_FOOD_YELLOW;i++)
+    {
+        path_img_food_yellow = path_img_food_yellow + "yelloworb_removebg/yelloworb (" + char(i+1+'0') + ").png";
+        if( !gFoodTexture_Yellow[i].loadFromFile(path_img_food_yellow ) )
+        {
+            printf( "Failed to load food texture!\n" );
+
+        }
+        path_img_food_yellow="";
+    }
+    for (int i=0;i<NUM_IMG_FOOD_PURPLE;i++)
+    {
+        path_img_food_purple = path_img_food_purple + "purpleorb_removebg/purpleorb (" + char(i+1+'0') + ").png";
+        if( !gFoodTexture_Purple[i].loadFromFile(path_img_food_purple ) )
+        {
+            printf( "Failed to load food texture!\n" );
+
+        }
+        path_img_food_purple="";
+    }
+    //END FOOD
+    //DOT
+	for (int i=0;i<NUM_IMG_DOT_STAND;i++)
+    {
+        path_img_dot_stand = path_img_dot_stand + "dino1_removebg/stand/dino_stand (" + char(i+1+'0') + ").png";
+        if( !gDotTexture_Stand[i].loadFromFile(path_img_dot_stand ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+        path_img_dot_stand="";
+    }
+    for (int i=0;i<NUM_IMG_DOT_MOVE;i++)
+    {
+        path_img_dot_move = path_img_dot_move + "dino1_removebg/move/dino_move (" + char(i+1+'0') + ").png";
+        if( !gDotTexture_Move[i].loadFromFile(path_img_dot_move ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+         path_img_dot_move="";
+    }
+
+    //END DOT
+    //enemy1
+    for (int i=0;i<NUM_IMG_ENEMY1;i++)
+    {
+        path_img_enemy1 = path_img_enemy1 + "zom_removebg/zom (" + char(i+1+'0') + ").png";
+        if( !gEnemy1Texture[i].loadFromFile(path_img_enemy1 ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+        path_img_enemy1="";
+    }
+    for (int i=0;i<NUM_IMG_EXPLOSION;i++)
+    {
+        path_img_explosion = path_img_explosion + "explosion_removebg/explosion (" + char(i+1+'0') + ").png";
+        if( !gExplosion[i].loadFromFile(path_img_explosion ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+        path_img_explosion="";
+    }
+    //enemy2
+    for (int i=0;i<NUM_IMG_ENEMY2;i++)
+    {
+        path_img_enemy2 = path_img_enemy2 + "monster_removebg/monster (" + char(i+1+'0') + ").png";
+        if( !gEnemy2Texture[i].loadFromFile(path_img_enemy2 ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+        path_img_enemy2="";
+    }
+    //enemy3
+    for (int i=0;i<NUM_IMG_ENEMY3;i++)
+    {
+        path_img_enemy3 = path_img_enemy3 + "monster_removebg/monster (" + char(i+1+'0') + ").png";
+        if( !gEnemy3Texture[i].loadFromFile(path_img_enemy3 ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+        path_img_enemy3="";
+    }
+    //amo_dot
+    for (int i=0;i<NUM_IMG_AMO_DOT;i++)
+    {
+        path_img_amo_dot = path_img_amo_dot + "fireball1_removebg/fireball1 (" + char(i+1+'0') + ").png";
+        if( !gShurikenTexture[i].loadFromFile(path_img_amo_dot ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+        path_img_amo_dot="";
+    }
+     for (int i=0;i<NUM_IMG_SPECIAL_AMO;i++)
+    {
+        path_img_special_amo = path_img_special_amo + "fireball2_removebg/fireball2 (" + char(i+1+'0') + ").png";
+        if( !gShurikenTexture_SPECIAL[i].loadFromFile(path_img_special_amo ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+        path_img_special_amo="";
+    }
+
+    //amo_enemy2
+    for (int i=0;i<NUM_IMG_AMO_ENEMY2;i++)
+    {
+        path_img_amo_enemy2 = path_img_amo_enemy2 + "enemyamo_removebg/enemyamo (" + char(i+1+'0') + ").png";
+        if( !gShuriken2Texture[i].loadFromFile(path_img_amo_enemy2 ) )
+        {
+            printf( "Failed to load dot texture!\n" );
+
+        }
+        path_img_amo_enemy2="";
+    }
+    //level
+    for (int i=0;i<NUM_IMG_LEVEL;i++)
+    {
+        path_img_level = path_img_level + "level_removebg/level (" + char(i+1+'0') + ").png";
+        if( !LevelTexture[i].loadFromFile(path_img_level ) )
+        {
+            printf( "Failed to load level texture!\n" );
+
+        }
+        path_img_level="";
+    }
+
+	return success;
 }
 void close()
 {
@@ -539,5 +694,38 @@ bool checkCollision( SDL_Rect a, SDL_Rect b )
     return true;
 }
 int main(int argc, char* args[]){
+   freopen("highscore.txt","r",stdin);
+   if( !init() )
+	{
+		printf( "Failed to initialize!\n" );
+	}
+	else
+	{
+		//Load media
+		if( !loadMedia() )
+		{
+			printf( "Failed to load media!\n" );
+		}
+		else
+		{
 
+		    LTimer fpsTimer;
+		    LTimer capTimer;
+		    int countedFrames = 0;
+			fpsTimer.start();
+			//Main loop flag
+
+            int check_pause;
+            int check_gameover;
+            enum TypeScreen
+            {
+                NONE_ = 0,
+                MENU_ = 1,
+                PAUSE_ = 2,
+                GAMEOVER_ = 3
+            };
+            int type_screen = MENU_;
+
+      }
+    }
 }
