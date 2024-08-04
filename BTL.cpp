@@ -811,6 +811,131 @@ int tutorial()
 
     return 1;
 }
+int menu()
+{
+   // std::cout<<tan((25*3.1415)/180);
+    //std::cout<<"menu";
+    gMenu_IMG.render(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+    SDL_Color purple = { 138,43,226};
+
+
+    if( !gTextMenu[0].loadFromRenderedText("PLAY GAME" ,purple ) )
+        {
+            printf( "Failed to render text texture!\n" );
+        }
+    if( !gTextMenu[1].loadFromRenderedText("EXIT" ,purple ) )
+        {
+            printf( "Failed to render text texture!\n" );
+        }
+     if( !gTextMenu[2].loadFromRenderedText("HOW TO PLAY" ,purple ) )
+        {
+            printf( "Failed to render text texture!\n" );
+        }
+        SDL_Rect button[NUM_ITEM_MENU];
+        button[0] = {120,380,260,60};
+        button[1] = {120,480,260,60};
+        button[2] = {120,580,260,60};
+    SDL_Event menu_event;
+    int check_tutorial;
+    int check_setmap;
+    int x_mouse=0,y_mouse=0;
+    while (true)
+    {
+        gTextMenu[0].render(140,390,215,45);
+        gTextMenu[1].render(190,485,112,45);
+        gTextMenu[2].render(140,580,215,45);
+        while (SDL_PollEvent(&menu_event))
+        {
+            switch (menu_event.type)
+            {
+                case SDL_QUIT:
+                    return 1;
+                case SDL_MOUSEMOTION:
+                    {
+                     x_mouse = menu_event.motion.x;
+                     y_mouse = menu_event.motion.y;
+                     for (int i=0;i<NUM_ITEM_MENU;i++)
+                     {
+                         if (x_mouse >=button[i].x && x_mouse <= button[i].x+button[i].w && y_mouse >= button[i].y && y_mouse <=button[i].y+button[i].h)
+                         {
+                             gTextMenu[i].setColor(255,0,127);
+                         }
+                         else
+                         {
+                             gTextMenu[i].setColor(138,43,226);
+                         }
+                     }
+                    }
+                    break;
+                    case SDL_MOUSEBUTTONDOWN:
+                    {
+                         x_mouse = menu_event.motion.x;
+                         y_mouse = menu_event.motion.y;
+                         for (int i=0;i<NUM_ITEM_MENU;i++)
+                         {
+                             if (x_mouse >=button[i].x && x_mouse <= button[i].x+button[i].w && y_mouse >= button[i].y && y_mouse <=button[i].y+button[i].h)
+                             {
+
+                                 Mix_PlayChannel( -1, gMenuClick, 0 );
+                                 if (i == 0)
+                                 {
+                                     check_setmap = set_map();
+                                     if (check_setmap == 1) return 1;
+                                     else return 0;
+                                 }
+                                 else if (i == 2)
+                                 {
+                                     check_tutorial = tutorial();
+                                     if (check_tutorial == 1) return 1;
+                                     else if (check_tutorial == 0)
+                                     {
+                                         check_setmap = set_map();
+                                         if (check_setmap == 1) return 1;
+                                         else return 0;
+                                    }
+
+                                 }
+                                 else   return i;
+                             }
+                        }
+
+                   // break;
+                    }
+                    default:
+                    break;
+                    }
+                }
+                if (HIGH_SCORE>0)
+                        {
+                            //font score
+                            char_tmp = char_tmp + "HIGH SCORE : " + int_to_str(HIGH_SCORE*100);
+                            SDL_Color textColor = { 255,255,255};
+                            if( !gTextHighScore.loadFromRenderedText( char_tmp, textColor ) )
+                            {
+                                printf( "Failed to render text texture!\n" );
+
+                            }
+                            gTextHighScore.render(120,240,260,60);
+                            char_tmp="";
+                        }
+                        else
+                        {
+                        //font score
+                            char_tmp = char_tmp + "HIGH SCORE : " + "000";
+                            SDL_Color textColor = { 255,255,255};
+                            if( !gTextHighScore.loadFromRenderedText( char_tmp, textColor ) )
+                            {
+                                printf( "Failed to render text texture!\n" );
+
+                            }
+                             gTextHighScore.render(120,240,260,60);
+                            char_tmp="";
+                        }
+            SDL_RenderPresent( gRenderer );
+        }
+
+    return 1;
+}
 
 int main( int argc, char* args[] )
 {
