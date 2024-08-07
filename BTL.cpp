@@ -936,7 +936,127 @@ int menu()
 
     return 1;
 }
+int game_over()
+{
 
+    gGameOver_IMG.render(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+    if (SCORE >= HIGH_SCORE) HIGH_SCORE = SCORE;
+    //std::cout<<HIGH_SCORE;
+    //freopen("highscore.txt","r",stdout);
+   // std::cout<<HIGH_SCORE;
+
+    SDL_Rect gameover_button_rect[NUM_ITEM_PAUSE];
+    gameover_button_rect[0] = {50,315,100,100};//HOME
+    gameover_button_rect[1] = {200,315,100,100};//PLAYAGAIN
+    gameover_button_rect[2] = {350,315,100,100};//EXIT
+    int x_mouse=0,y_mouse=0;
+    SDL_Color white = { 255,255,255};
+    if( !gTextGameOver[0].loadFromRenderedText("Home" ,white ) )
+        {
+            printf( "Failed to render text texture!\n" );
+        }
+    if( !gTextGameOver[1].loadFromRenderedText("PLAY AGAIN" ,white ) )
+        {
+            printf( "Failed to render text texture!\n" );
+        }
+    if( !gTextGameOver[2].loadFromRenderedText("Exit" ,white ) )
+        {
+            printf( "Failed to render text texture!\n" );
+        }
+        SDL_Rect gameover_button_img_rect[NUM_ITEM_GAMEOVER];
+        gameover_button_img_rect[0] = {366,25,105,105};//home
+        gameover_button_img_rect[1] = {23,369,110,104};//play again
+        gameover_button_img_rect[2] = {29,23,102,107};//exit
+
+        SDL_Event gameover_event;
+    while (true)
+    {
+        //gTextGameOver[0].render(50,450,100,100);
+        //gTextGameOver[1].render(200,450,100,100);
+        //gTextGameOver[2].render(350,450,100,100);
+
+        button_gameover_img[0].render(50,315,100,100,&gameover_button_img_rect[0]);
+        button_gameover_img[1].render(200,315,100,100,&gameover_button_img_rect[1]);
+        button_gameover_img[2].render(350,315,100,100,&gameover_button_img_rect[2]);
+
+        while (SDL_PollEvent(&gameover_event))
+        {
+            switch (gameover_event.type)
+            {
+                case SDL_QUIT:
+                    return 2;
+                case SDL_MOUSEMOTION:
+                    {
+                     x_mouse = gameover_event.motion.x;
+                     y_mouse = gameover_event.motion.y;
+                     for (int i=0;i<NUM_ITEM_GAMEOVER;i++)
+                     {
+                         if (x_mouse >=gameover_button_rect[i].x && x_mouse <= gameover_button_rect[i].x+gameover_button_rect[i].w && y_mouse >=gameover_button_rect[i].y && y_mouse <=gameover_button_rect[i].y+gameover_button_rect[i].h)
+                         {
+                            // gTextGameOver[i].setColor(255,255,0);
+                             button_gameover_img[i].setColor(0,0,255);
+                         }
+                         else
+                         {
+                            //gTextGameOver[i].setColor(255,255,255);
+                            button_gameover_img[i].setColor(255,255,255);
+                         }
+                     }
+                    }
+                    break;
+                    case SDL_MOUSEBUTTONDOWN:
+                    {
+                         x_mouse = gameover_event.motion.x;
+                         y_mouse = gameover_event.motion.y;
+                         for (int i=0;i<NUM_ITEM_PAUSE;i++)
+                         {
+                         if (x_mouse >=gameover_button_rect[i].x && x_mouse <= gameover_button_rect[i].x+gameover_button_rect[i].w && y_mouse >=gameover_button_rect[i].y && y_mouse <=gameover_button_rect[i].y+gameover_button_rect[i].h)
+                             {
+
+                                Mix_PlayChannel( -1, gMenuClick, 0 );
+                                 return i;
+                             }
+                        }
+
+                   // break;
+                    }
+
+                    default:
+                    break;
+                    }
+                }
+            if (HIGH_SCORE>0)
+                        {
+                            //font score
+                            char_tmp = char_tmp + "HIGH SCORE : " + int_to_str(HIGH_SCORE*100);
+                            SDL_Color textColor = { 255,255,255};
+                            if( !gTextHighScore.loadFromRenderedText( char_tmp, textColor ) )
+                            {
+                                printf( "Failed to render text texture!\n" );
+
+                            }
+                            gTextHighScore.render(120,240,260,60);
+                            char_tmp="";
+                        }
+                        else
+                        {
+                        //font score
+                            char_tmp = char_tmp + "HIGH SCORE : " + "000";
+                            SDL_Color textColor = { 255,255,255};
+                            if( !gTextHighScore.loadFromRenderedText( char_tmp, textColor ) )
+                            {
+                                printf( "Failed to render text texture!\n" );
+
+                            }
+                             gTextHighScore.render(120,240,260,60);
+                            char_tmp="";
+                        }
+
+            SDL_RenderPresent( gRenderer );
+        }
+
+    return 2;
+}
 int main( int argc, char* args[] )
 {
 
