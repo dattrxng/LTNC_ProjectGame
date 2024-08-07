@@ -940,51 +940,134 @@ int menu()
 int main( int argc, char* args[] )
 {
 
-    freopen("highscore.txt","r",stdin);
-    std::cin >> HIGH_SCORE;
+     freopen("highscore.txt","r",stdin);
+		    std::cin>>HIGH_SCORE;
+	//Start up SDL and create window
 
-    if( !init() )
-    {
-        printf( "Failed to initialize!\n" );
-    }
-    else
-    {
-        if( !loadMedia() )
-        {
-            printf( "Failed to load media!\n" );
-        }
-        else
-        {
+	//std::cout << ENEMY1_VELY/(0.445) <<std:: endl;
+	if( !init() )
+	{
+		printf( "Failed to initialize!\n" );
+	}
+	else
+	{
+		//Load media
+		if( !loadMedia() )
+		{
+			printf( "Failed to load media!\n" );
+		}
+		else
+		{
 
-            bool quit = false;
-            SDL_Event e;
-            while( !quit )
+		    LTimer fpsTimer;
+		    LTimer capTimer;
+		    int countedFrames = 0;
+			fpsTimer.start();
+			//Main loop flag
+
+            int check_pause;
+            int check_gameover;
+            enum TypeScreen
             {
+                NONE_ = 0,
+                MENU_ = 1,
+                PAUSE_ = 2,
+                GAMEOVER_ = 3
+            };
+            int type_screen = MENU_;
+			//Event handler
+			SDL_Event e;
 
-                while( SDL_PollEvent( &e ) != 0 )
-                {
+			Dot dot;
+			Food food;
+			Food food2;
+			//food2.set_type(2);
+			food2.set_type(GetRandom(1,3));
+            int enemy_amo_rate[MAX_NUM_ENEMY_2];
+            int tmp;
+            int size_dot_amo;
+            Enemy m_enemy [MAX_NUM_ENEMY_1];
+            Enemy m2_enemy [MAX_NUM_ENEMY_2];
+            SDL_Rect pause_button = {225,0,50,50};
+            for (int t=0;t<MAX_NUM_ENEMY_1;t++)//KHOI TAO ENEMY1
+            {
+                m_enemy[t].set_type(1);
+                m_enemy[t].set_enemy_vel(ENEMY1_VELY);
+                m_enemy[t].set_enemy_velX(ENEMY1_VELY/(0.466));
+                m_enemy[t].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-300,-100));
+                m_enemy[t].set_is_move(true);
+                m_enemy[t].set_enemy1_heart(ENEMY1_HEART);
+            }
 
-                    if( e.type == SDL_QUIT )
-                    {
-                        quit = true;
-                    }
+            for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)//KHOI TAO ENEMY2
+            {
+                m2_enemy[t2].set_type(2);
+                m2_enemy[t2].set_enemy_vel(ENEMY2_VELY);
+                m2_enemy[t2].set_enemy_velX(ENEMY2_VELY/(0.466));//tan phi = y/xd
+                m2_enemy[t2].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-150,-50));
+                enemy_amo_rate[t2] = 0;
+                m2_enemy[t2].set_is_move(true);
+                m2_enemy[t2].set_enemy2_heart(ENEMY2_HEART);
+            }
 
-                }
+			//Menu
+			int check_menu = menu();
+            if (check_menu == 1) quit = true;
+            else type_screen=NONE_;
+			//While application is running
+			while( !quit )
+			{
+			    if (type_screen == GAMEOVER_)
+                {  check_gameover = game_over();
+                        //std::cout<<check_gameover;
+                        if (check_gameover == 0)//menu
+                        {
+                            dot.reset();
+                            DOT_HEART = MAX_DOT_HEART;
+                            count_remain_special_amo = 0;
+                            dot.set_type_amo(0);
+                            type_amo=0;
+                            level = 1;
+                            count_time_render_level=0;
+                            level_render_success = false;
+                            count_appear_food1=0;
+                            count_appear_special_food=0;
+                            dot_amo_rate =0 ;
+                            dot.clear_amo();
+                            SCORE = 0;
+                             for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                            {
+                                if (m_enemy[t].get_is_render()==true)
+                                {
+                                    m_enemy[t].set_type(1);
+                                    m_enemy[t].set_enemy_vel(ENEMY1_VELY);
+                                     m_enemy[t].set_enemy_velX(ENEMY1_VELY/(0.466));
+                                    m_enemy[t].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-300,-100));
+                                    m_enemy[t].set_is_move(true);
+                                    m_enemy[t].set_enemy1_heart(ENEMY1_HEART);
+                                }
+                            }
 
-                SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-                SDL_RenderClear( gRenderer );
-
-                int menuWidth = 800;
-                int menuHeight = 600;
-                gMenu_IMG.render(0, 0, menuWidth, menuHeight, NULL, 0.0, NULL, SDL_FLIP_NONE);
-
-                SDL_RenderPresent( gRenderer );
+                            for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                            {
+                                if (m2_enemy[t2].get_is_render()==true)
+                                {
+                                    m2_enemy[t2].set_type(2);
+                                    m2_enemy[t2].clear_amo();
+                                    m2_enemy[t2].set_enemy_vel(ENEMY2_VELY);
+                                    m2_enemy[t2].set_enemy_velX(ENEMY2_VELY/(0.466));
+                                    m2_enemy[t2].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-200,-100));
+                                    enemy_amo_rate[t2] = 0;
+                                    m2_enemy[t2].set_is_move(true);
+                                    m2_enemy[t2].set_enemy2_heart(ENEMY2_HEART);
+                                }
+                            }
+                            bool_game_over = false;
+                            type_screen = MENU_;
+                         }
             }
         }
-    }
-
-
-    close();
-
-    return 0;
+		}
+	}
 }
+
