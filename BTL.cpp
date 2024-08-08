@@ -1300,5 +1300,81 @@ int main( int argc, char* args[] )
                             bool_game_over = false;
                             type_screen = MENU_;
 
+
+
+                    }
+                     else if (check_pause == 2)//exit
+                        {
+                            quit = true;
+                        }
+                        else
+                        {
+                            type_screen = NONE_;
+                            bool_pause = false;
+                        }
+                }
+			    else if (type_screen == MENU_)
+                {
+                    check_menu = menu();
+                    if (check_menu == 1) quit = true;
+                    else type_screen = NONE_;
+                    //std::cout<<type_screen;
+                }
+
+			    else if (type_screen == NONE_)
+                {
+
+
+
+			   // std::cout<<4;
+			    capTimer.start();
+
+				SDL_RenderClear( gRenderer );
+
+                //background
+
+
+                gBackground.render(0,moveY_BG,SCREEN_WIDTH,SCREEN_HEIGHT);
+                gBackground.render(0,-SCREEN_HEIGHT+moveY_BG,SCREEN_WIDTH,SCREEN_HEIGHT);
+                moveY_BG+=SPEED_BACKGROUND;
+                if (moveY_BG>=SCREEN_HEIGHT) moveY_BG=0;
+
+                    //LEVEL 1
+
+                 if (count_time_render_level<=time_limit_render_level && level_render_success==false && level==1)
+                    {
+                        //std::cout<<1;
+                         SDL_Rect level_rect = {216,154,224,66};
+                        LevelTexture[0].render(73,180,355,96,&level_rect);//level1
+                        count_time_render_level++;
+                        NUM_ENEMY1=6;
+                        NUM_ENEMY2=0;
+                        for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                                {
+                                   if (t<NUM_ENEMY1)
+                                   {
+                                       m_enemy[t].set_is_render(true);
+                                       m_enemy[t].set_typemove(0);
+                                   }
+                                   else m_enemy[t].set_is_render(false);
+                                }
+
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                                {
+                                    if (t2<NUM_ENEMY2)
+                                    {
+                                        m2_enemy[t2].set_is_render(true);
+                                        m2_enemy[t2].set_typemove(0);
+                                       // std::cout<<1;
+                                    }
+                                    else m2_enemy[t2].set_is_render(false);
+                                }
+                        SDL_RenderPresent( gRenderer );
+                    }
+
+                }
+			}
+		}
+	}
 }
 
