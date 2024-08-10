@@ -1595,6 +1595,76 @@ int main( int argc, char* args[] )
                         }
                     }
                 }
+            //ENEMY 2
+//std::cout<<quit;
+if (quit == false)
+{
+            for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                {
+                    if (m2_enemy[t2].get_is_move()==true  && m2_enemy[t2].get_explosion()==false && m2_enemy[t2].get_is_render()==true)
+                    {
+                        m2_enemy[t2].move();
+                        m2_enemy[t2].render();
+
+                        if (enemy_amo_rate[t2]>=reload_enemy_amo && m2_enemy[t2].get_y()>=0)
+                        {
+                            //std::cout<<1;
+                            m2_enemy[t2].InitAmo();
+                            enemy_amo_rate[t2] = 0;
+                        }
+                        if (m2_enemy[t2].get_y()>=0 && m2_enemy[t2].get_y()<=3)
+                        {
+                            enemy_amo_rate[t2] = reload_enemy_amo-40;;
+                        }
+
+
+                            if (checkCollision(m2_enemy[t2].getRect(),dot.getRect()) && level_render_success == true)
+                            {
+                                DOT_HEART--;
+                                Mix_PlayChannel( -1, gEnemyHurt, 0 );
+                                m2_enemy[t2].set_explosion(true);
+                                m2_enemy[t2].set_is_move(false);
+                                if (DOT_HEART <= 0)
+                                {
+                                    type_screen = GAMEOVER_;
+                                    bool_game_over = true;
+                                    break;
+                                }
+                            }
+
+                    }
+
+                        for (int tt3=0;tt3<m2_enemy[t2].get_amo_list().size();tt3++)
+                        {
+
+                                if (checkCollision(m2_enemy[t2].get_amo_list()[tt3].getRect(),dot.getRect()) &&
+                                    m2_enemy[t2].get_amo_list()[tt3].get_is_move() == true && m2_enemy[t2].get_is_render()==true && level_render_success == true)//Xet va cham cua dan dich voi dino
+                                {
+                                    DOT_HEART--;
+                                    if (DOT_HEART <= 0)
+                                    {
+                                        m2_enemy[t2].remove_amo(tt3);
+                                        type_screen = GAMEOVER_;
+                                        bool_game_over = true;
+
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        m2_enemy[t2].remove_amo(tt3);
+                                    }
+
+                                }
+
+                            }
+
+                            if (bool_game_over == true || type_screen!= NONE_) {break;}
+                            if (m2_enemy[t2].get_is_render()==true) m2_enemy[t2].MakeAmo();
+
+
+                }
+}
+
 
                 }
 			}
