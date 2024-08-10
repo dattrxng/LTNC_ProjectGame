@@ -1496,6 +1496,76 @@ int main( int argc, char* args[] )
 
                 SDL_Rect pause_button_img_rect = {137,139,114,104};
                 pause_on_play.render(225,0,50,50,&pause_button_img_rect);
+                 //fps
+
+                float avgFPS = countedFrames / ( fpsTimer.getTicks() / 1000.f );
+				if( avgFPS > 2000000 )
+				{
+					avgFPS = 0;
+				}
+				if (count_remain_special_amo>time_special_amo  ) {type_amo = 0;count_remain_special_amo=0;}
+
+                while( SDL_PollEvent( &e ) != 0 )
+				{
+				    int x_mouse=0,y_mouse=0;
+					//User requests quit
+					switch (e.type)
+                    {
+                        case SDL_QUIT:
+                            quit = true;
+                        case SDL_MOUSEMOTION:
+                            {
+                                 x_mouse = e.motion.x;
+                                 y_mouse = e.motion.y;
+                                 if (x_mouse >=pause_button.x && x_mouse <= pause_button.x+pause_button.w && y_mouse >= pause_button.y && y_mouse <=pause_button.y+pause_button.h)
+                                 {
+                                     pause_on_play.setColor(0,0,255);
+                                 }
+                                 else
+                                 {
+                                     pause_on_play.setColor(255,255,255);
+                                 }
+                            }
+                        break;
+                        case SDL_MOUSEBUTTONDOWN:
+                        {
+                             x_mouse = e.motion.x;
+                             y_mouse = e.motion.y;
+                             if (x_mouse >=pause_button.x && x_mouse <= pause_button.x+pause_button.w && y_mouse >= pause_button.y && y_mouse <=pause_button.y+pause_button.h)
+                                 {
+
+                                     Mix_PlayChannel( -1, gMenuClick, 0 );
+                                     bool_pause = true;
+                                     type_screen = PAUSE_;
+                                     //std::cout<<"PAUSE";
+
+                                 }
+                       // break;
+                        }
+                        break;
+                        case SDL_KEYDOWN:
+                            {
+                                if (e.key.keysym.sym==SDLK_p)
+                                {
+                                    Mix_PlayChannel( -1, gMenuClick, 0 );
+                                    bool_pause = true;
+                                    type_screen = PAUSE_;
+                                }
+                            }
+                            break;
+                        default:
+                        break;
+                }
+
+					//Handle input for the dot
+					 dot.handleEvent( e );
+
+				}
+
+				dot.move();
+
+                dot.render();
+                dot.MakeAmo();
 
                 }
 			}
