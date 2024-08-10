@@ -1566,6 +1566,35 @@ int main( int argc, char* args[] )
 
                 dot.render();
                 dot.MakeAmo();
+                //ENEMY1
+            //std::cout<<"quit:"<<quit;
+            for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                {
+                    if (m_enemy[t].get_is_move()==true && m_enemy[t].get_explosion()==false && m_enemy[t].get_is_render()==true)
+                    {
+
+                     //tmp = enemy->get_enemy1_heart();std::cout<<tmp;
+                        m_enemy[t].move();
+                        m_enemy[t].render();
+                        //tmp = enemy->get_enemy1_heart();std::cout<<tmp;
+
+                            if (checkCollision(m_enemy[t].getRect(),dot.getRect()) && level_render_success == true)
+                        {
+                            Mix_PlayChannel( -1, gEnemyHurt, 0 );
+                            DOT_HEART--;
+                            m_enemy[t].set_explosion(true);
+                            m_enemy[t].set_is_move(false);
+                            if (DOT_HEART <= 0)
+                            {
+
+                                bool_game_over = true;
+                                type_screen = GAMEOVER_;
+                                break;
+                            }
+
+                        }
+                    }
+                }
 
                 }
 			}
