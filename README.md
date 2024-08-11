@@ -1,9 +1,9 @@
 # ***Dino Run***
-# **Giới thiệu game**
+# **1.Giới thiệu game**
 * "Dino Run" là một tựa game hành động đầy kịch tính và hấp dẫn, nơi người chơi sẽ điều khiển một chú khủng long dũng cảm trong một cuộc phiêu lưu đầy thử thách. Trên hành trình của mình, chú khủng long sẽ phải đối mặt với vô số quái vật nguy hiểm xuất hiện từ khắp nơi.
 
 * Nhiệm vụ của người chơi là điều khiển khủng long né tránh hoặc tiêu diệt những con quái vật bằng cách bắn chúng. Với khả năng di chuyển linh hoạt và kỹ năng chiến đấu mạnh mẽ, khủng long của bạn sẽ phải vượt qua những màn chơi đầy cạm bẫy và thách thức.
-# **Menu Game**
+# **2.Menu Game**
 Dưới đây là menu của trò chơi "Dino Run":
 
 <p align="center">
@@ -19,3 +19,12 @@ Menu chính của game Dino Run được thiết kế đơn giản, thân thiệ
 
 **Hiển Thị Điểm Cao**:
 Phần trên của menu hiển thị nổi bật HIGH SCORE với giá trị mặc định là 000. Phần này theo dõi điểm cao nhất mà người chơi đạt được.
+
+# **3. Các nhân vật ,items và enemy của Game**
+- Nhân vật : Chú khủng long màu đỏ
+- Items:
+- Enemy:
+# **4. Cách chơi Game**
+<p align="center">
+  <img src="image2.png" alt="Menu của Dino Run">
+</p>
