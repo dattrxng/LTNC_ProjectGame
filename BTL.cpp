@@ -1954,6 +1954,77 @@ if (quit == false)
                         }
 
             }
+            //reset enemy and explosion
+                        for (int t=0;t<MAX_NUM_ENEMY_1;t++)//ENEMY1
+                        {
+                            if (m_enemy[t].get_is_render()==true)
+                            {
+                                if (m_enemy[t].get_explosion()==true)
+                                {
+                                        m_enemy[t].die_render();
+                                }
+                                else if (m_enemy[t].get_explosion()==false && m_enemy[t].get_is_move()==false)
+                                {
+                                    m_enemy[t].set_is_move(true);
+                                    m_enemy[t].set_xy(GetRandom(0,SCREEN_WIDTH-70),GetRandom(-300,-100));
+                                    m_enemy[t].set_enemy1_heart(ENEMY1_HEART);
+                                }
+                            }
+                        }
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)//ENEMY1
+                        {
+                            if (m2_enemy[t2].get_is_render()==true)
+                            {
+                                if (m2_enemy[t2].get_explosion()==true)
+                                {
+                                        m2_enemy[t2].die_render();
+                                }
+                                else if (m2_enemy[t2].get_explosion()==false && m2_enemy[t2].get_is_move()==false)
+                                {
+                                    m2_enemy[t2].set_is_move(true);
+                                    m2_enemy[t2].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-150,-50));
+
+                                    enemy_amo_rate[t2]=0;
+                                    m2_enemy[t2].set_enemy2_heart(ENEMY2_HEART);
+                                }
+                            }
+                        }
+                        //font heart
+                        //Render text
+                        //std::cout<<quit;
+
+
+                            if (DOT_HEART>0)
+                            {
+                                SDL_Rect heart_rect = {92,88,49,52};
+                                gHeart_Data.render(0,0,45,45,&heart_rect);
+                                char_tmp =char_tmp + "x" + int_to_str(DOT_HEART);
+                                SDL_Color textColor = { 255,255,255};
+                                if( !gTextTexture.loadFromRenderedText( char_tmp, textColor ) )
+                                {
+                                    printf( "Failed to render text texture!\n" );
+
+                                }
+                                gTextTexture.render(45,0,50,50);
+                                char_tmp="";
+                            }
+                            else
+                            {
+                                //font heart
+                                //Render text
+                                SDL_Rect heart_rect = {92,88,49,52};
+                                gHeart_Data.render(0,0,45,45,&heart_rect);
+                                char_tmp =char_tmp + "x0";
+                                SDL_Color textColor = { 255,255,255};
+                                if( !gTextTexture.loadFromRenderedText( char_tmp, textColor ) )
+                                {
+                                    printf( "Failed to render text texture!\n" );
+
+                                }
+                                gTextTexture.render(45,0,50,50);
+                                char_tmp="";
+
+                            }
 
 
                 }
