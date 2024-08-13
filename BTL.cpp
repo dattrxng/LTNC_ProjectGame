@@ -1795,6 +1795,165 @@ if (quit == false)
                             }
 
                         }
+                                                for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)//ENEMY2
+                        {
+                            if (m2_enemy[t2].get_is_move()==true && m2_enemy[t2].get_is_render()==true)
+                            {
+                                if (dot.get_amo_list()[ii].get_is_move() == true )
+                                    {
+                                        if (dot.get_amo_list()[ii].get_shurikentype() == 0)
+                                        {
+                                            dot.set_dot_amo_vel(COMMON_DOT_AMO_VEL);
+                                            DAMAGE_AMO = COMMON_DAMAGE_AMO;
+                                            reload_dot_amo = common_reload_dot_amo;
+                                            if (m2_enemy[t2].get_is_move()==true)
+                                        {
+                                            if (checkCollision(dot.get_amo_list()[ii].getRect(),m2_enemy[t2].getRect())&& level_render_success == true)
+                                            {
+
+                                                if (m2_enemy[t2].get_type()==2)
+                                                {
+                                                    //std::cout<<m2_enemy[t2].get_enemy2_heart();
+                                                        //tmp = m2_enemy[t2].get_enemy2_heart();
+                                                        m2_enemy[t2].down_enemy2_heart(DAMAGE_AMO);
+
+                                                    if (m2_enemy[t2].get_enemy2_heart()<=0)
+                                                    {
+                                                        SCORE++;
+                                                        point++;
+                                                         Mix_PlayChannel( -1, gEnemyHurt, 0 );
+                                                        m2_enemy[t2].set_explosion(true);
+                                                        m2_enemy[t2].set_is_move(false);
+
+                                                    }
+                                                }
+                                                //dot.remove_amo(ii);
+                                               // dot.get_amo_list()[ii].set_is_move(false);
+                                               dot.erase_amo(ii);
+                                            }
+                                        }
+                                        }
+
+
+
+                                      else  if (dot.get_amo_list()[ii].get_shurikentype() == 1) // red
+                                        {
+                                            dot.set_dot_amo_vel(COMMON_DOT_AMO_VEL);
+                                            DAMAGE_AMO = MAX_DAMAGE_AMO;
+                                            reload_dot_amo = common_reload_dot_amo;
+                                             if (m2_enemy[t2].get_is_move()==true)
+                                        {
+                                            if (checkCollision(dot.get_amo_list()[ii].getRect(),m2_enemy[t2].getRect())&& level_render_success == true)
+                                            {
+
+                                                if (m2_enemy[t2].get_type()==2)
+                                                {
+                                                    //std::cout<<m2_enemy[t2].get_enemy2_heart();
+                                                        //tmp = m2_enemy[t2].get_enemy2_heart();
+                                                        m2_enemy[t2].down_enemy2_heart(DAMAGE_AMO);
+
+                                                    if (m2_enemy[t2].get_enemy2_heart()<=0)
+                                                    {
+                                                        SCORE++;
+                                                        point++;
+                                                         Mix_PlayChannel( -1, gEnemyHurt, 0 );
+                                                         m2_enemy[t2].set_explosion(true);
+                                                         m2_enemy[t2].set_is_move(false);
+
+                                                    }
+                                                }
+                                                //
+                                                //dot.get_amo_list()[ii].set_is_move(false);
+                                                //dot.remove_amo(ii);
+                                                dot.erase_amo(ii);
+                                            }
+                                        }
+                                            //
+
+
+                                        //
+                                        }
+                                       else  if (dot.get_amo_list()[ii].get_shurikentype() == 2) // yellow
+                                        {
+                                            dot.set_dot_amo_vel(MAX_DOT_AMO_VEL);
+                                            DAMAGE_AMO = COMMON_DAMAGE_AMO;
+                                            reload_dot_amo = max_reload_dot_amo;
+                                             if (m2_enemy[t2].get_is_move()==true)
+                                        {
+                                            if (checkCollision(dot.get_amo_list()[ii].getRect(),m2_enemy[t2].getRect())&& level_render_success == true)
+                                            {
+
+                                                if (m2_enemy[t2].get_type()==2)
+                                                {
+                                                    //std::cout<<m2_enemy[t2].get_enemy2_heart();
+                                                        //tmp = m2_enemy[t2].get_enemy2_heart();
+                                                        m2_enemy[t2].down_enemy2_heart(DAMAGE_AMO);
+
+                                                    if (m2_enemy[t2].get_enemy2_heart()<=0)
+                                                    {
+                                                        SCORE++;
+                                                        point++;
+                                                         Mix_PlayChannel( -1, gEnemyHurt, 0 );
+                                                        m2_enemy[t2].set_explosion(true);
+                                                        m2_enemy[t2].set_is_move(false);
+                                                    }
+                                                }
+                                                //dot.remove_amo(ii);
+                                               // dot.get_amo_list()[ii].set_is_move(false);
+                                               dot.erase_amo(ii);
+                                            }
+                                        }
+                                        }
+                                       else  if (dot.get_amo_list()[ii].get_shurikentype() == 3) // purple
+                                        {
+                                            dot.set_dot_amo_vel(COMMON_DOT_AMO_VEL);
+                                            DAMAGE_AMO = COMMON_DAMAGE_AMO;
+                                            reload_dot_amo = common_reload_dot_amo;
+                                             if (m2_enemy[t2].get_is_move()==true)
+                                        {
+                                            if (checkCollision(dot.get_amo_list()[ii].getRect(),m2_enemy[t2].getRect())&& level_render_success == true)
+                                            {
+
+                                                if (m2_enemy[t2].get_type()==2)
+                                                {
+                                                    //std::cout<<m2_enemy[t2].get_enemy2_heart();
+                                                        //tmp = m2_enemy[t2].get_enemy2_heart();
+                                                        m2_enemy[t2].down_enemy2_heart(DAMAGE_AMO);
+
+                                                    if (m2_enemy[t2].get_enemy2_heart()<=0)
+                                                    {
+                                                        SCORE++;
+                                                        point++;
+                                                         Mix_PlayChannel( -1, gEnemyHurt, 0 );
+                                                        m2_enemy[t2].set_explosion(true);
+                                                        m2_enemy[t2].set_is_move(false);
+
+
+                                                    }
+                                                }
+                                                //dot.remove_amo(ii);
+                                              // dot.get_amo_list()[ii].set_is_move(true);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                              if (dot.get_amo_list()[ii].get_shurikentype() == 1 && dot.get_amo_list()[ii].get_is_move() == true) // red
+                                {
+                                    for (int tt3=0;tt3<m2_enemy[t2].get_amo_list().size();tt3++)
+                                    {
+                                            if (checkCollision(m2_enemy[t2].get_amo_list()[tt3].getRect(),dot.get_amo_list()[ii].getRect()) &&
+                                                m2_enemy[t2].get_amo_list()[tt3].get_is_move() == true)
+                                            {
+                                                m2_enemy[t2].remove_amo(tt3);
+                                            }
+                                    }
+                                }
+                            }
+
+                        }
+
+            }
 
 
                 }
