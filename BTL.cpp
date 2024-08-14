@@ -123,15 +123,6 @@ std::string int_to_str(int a)
     }
   return res;
 }
-//Texture wrapper class
-
-//The dot that will move around on the screen
-//LTexture
-//Food class
-//Shuriken class
-//LTimer class
-// enemy class
-
 
 
 //Starts up SDL and creates window
@@ -146,15 +137,10 @@ void close();
 //Box collision detector
 bool checkCollision( SDL_Rect a, SDL_Rect b );
 
-//The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
 TTF_Font* gFont = NULL;
-/*TTF_Font* gFont2 = NULL;
-TTF_Font* gFont3 = NULL;
-TTF_Font* gMenu_Font = NULL;
-*/
-//The window renderer
+
 SDL_Renderer* gRenderer = NULL;
 
 #include "LTexture.h"
@@ -402,7 +388,6 @@ bool loadMedia()
 		success = false;
 	}
 
-	//end sound
 
 	//FOOD
 	for (int i=0;i<NUM_IMG_FOOD_HEART;i++)
@@ -813,8 +798,7 @@ int tutorial()
 }
 int menu()
 {
-   // std::cout<<tan((25*3.1415)/180);
-    //std::cout<<"menu";
+
     gMenu_IMG.render(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
     SDL_Color purple = { 138,43,226};
 
@@ -967,9 +951,6 @@ int pause()
         SDL_Event pause_event;
     while (true)
     {
-       // gTextPause[0].render(50,450,100,100);
-       // gTextPause[1].render(200,450,100,100);
-       // gTextPause[2].render(350,450,100,100);
 
         button_pause_img[0].render(50,315,100,100,&pause_button_img_rect[0]);
         button_pause_img[1].render(200,315,100,100,&pause_button_img_rect[1]);
@@ -989,12 +970,11 @@ int pause()
                      {
                          if (x_mouse >=pause_button_rect[i].x && x_mouse <= pause_button_rect[i].x+pause_button_rect[i].w && y_mouse >=pause_button_rect[i].y && y_mouse <=pause_button_rect[i].y+pause_button_rect[i].h)
                          {
-                             //gTextPause[i].setColor(255,255,0);
+
                              button_pause_img[i].setColor(0,0,255);
                          }
                          else
                          {
-                            //gTextPause[i].setColor(255,255,255);
                             button_pause_img[i].setColor(255,255,255);
                          }
                      }
@@ -1056,9 +1036,6 @@ int game_over()
 
     gGameOver_IMG.render(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
     if (SCORE >= HIGH_SCORE) HIGH_SCORE = SCORE;
-    //std::cout<<HIGH_SCORE;
-    //freopen("highscore.txt","r",stdout);
-   // std::cout<<HIGH_SCORE;
 
     SDL_Rect gameover_button_rect[NUM_ITEM_PAUSE];
     gameover_button_rect[0] = {50,315,100,100};//HOME
@@ -1086,9 +1063,7 @@ int game_over()
         SDL_Event gameover_event;
     while (true)
     {
-        //gTextGameOver[0].render(50,450,100,100);
-        //gTextGameOver[1].render(200,450,100,100);
-        //gTextGameOver[2].render(350,450,100,100);
+
 
         button_gameover_img[0].render(50,315,100,100,&gameover_button_img_rect[0]);
         button_gameover_img[1].render(200,315,100,100,&gameover_button_img_rect[1]);
@@ -1108,12 +1083,12 @@ int game_over()
                      {
                          if (x_mouse >=gameover_button_rect[i].x && x_mouse <= gameover_button_rect[i].x+gameover_button_rect[i].w && y_mouse >=gameover_button_rect[i].y && y_mouse <=gameover_button_rect[i].y+gameover_button_rect[i].h)
                          {
-                            // gTextGameOver[i].setColor(255,255,0);
+
                              button_gameover_img[i].setColor(0,0,255);
                          }
                          else
                          {
-                            //gTextGameOver[i].setColor(255,255,255);
+
                             button_gameover_img[i].setColor(255,255,255);
                          }
                      }
@@ -1177,9 +1152,7 @@ int main( int argc, char* args[] )
 
      freopen("highscore.txt","r",stdin);
 		    std::cin>>HIGH_SCORE;
-	//Start up SDL and create window
 
-	//std::cout << ENEMY1_VELY/(0.445) <<std:: endl;
 	if( !init() )
 	{
 		printf( "Failed to initialize!\n" );
@@ -1318,7 +1291,6 @@ int main( int argc, char* args[] )
                     check_menu = menu();
                     if (check_menu == 1) quit = true;
                     else type_screen = NONE_;
-                    //std::cout<<type_screen;
                 }
 
 			    else if (type_screen == NONE_)
@@ -1503,6 +1475,20 @@ int main( int argc, char* args[] )
 				{
 					avgFPS = 0;
 				}
+				 if (count_appear_food1>SPEED_APPEAR_FOOD1)
+                {
+                    food.set_type(0);
+                    food.move(dot.getRect());
+                    food.render();
+
+                }
+                if (count_appear_special_food>SPEED_APPEAR_SPECIAL_FOOD)
+                {
+
+                    food2.move(dot.getRect());
+                    food2.render();
+
+                }
 				if (count_remain_special_amo>time_special_amo  ) {type_amo = 0;count_remain_special_amo=0;}
 
                 while( SDL_PollEvent( &e ) != 0 )
@@ -2025,10 +2011,73 @@ if (quit == false)
                                 char_tmp="";
 
                             }
+                            //SCORE
+                            if (SCORE>0)
+                            {
+                                SDL_Rect score_rect = {92,88,49,52};
+                                gHeart_Data.render(0,0,45,45,&score_rect);
+                                char_tmp = char_tmp + "SCORE : " + int_to_str(SCORE*100);
+                                SDL_Color textColor = { 255,255,255};
+                                if( !gTextTexture2.loadFromRenderedText( char_tmp, textColor ) )
+                                {
+                                    printf( "Failed to render text texture!\n" );
 
+                                }
+                                gTextTexture2.render(SCREEN_WIDTH-120,0,100,50);
+                                char_tmp="";
+                            }
+                            else
+                            {
+                            //font score
+                                char_tmp = char_tmp + "SCORE : " + "000";
+                                SDL_Color textColor = { 255,255,255};
+                                if( !gTextTexture2.loadFromRenderedText( char_tmp, textColor ) )
+                                {
+                                    printf( "Failed to render text texture!\n" );
+
+                                }
+                                gTextTexture2.render(SCREEN_WIDTH-120,0,100,50);
+                                char_tmp="";
+                            }
+                            if (type_amo != 0 && count_appear_special_food!=0)
+                            {
+                                if (type_amo==1) SDL_SetRenderDrawColor( gRenderer, 0xFF, 0x00, 0x00, 0xFF );//RED
+                                else if (type_amo == 2) SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0x00, 0xFF );//YELLOW
+                                else if (type_amo == 3) SDL_SetRenderDrawColor( gRenderer, 0xBE, 0x00, 0xFE, 0xFF );//PURPLE
+                                SDL_Rect time_remain_rect = {0,SCREEN_HEIGHT-10,(1-float(count_remain_special_amo)/time_special_amo)*SCREEN_WIDTH,10};
+                                SDL_RenderFillRect(gRenderer,&time_remain_rect);
+
+                            }
+                            SDL_RenderPresent( gRenderer );
+//std::cout<<quit;
+
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                        {
+                            if (m2_enemy[t2].get_y()>0 && m2_enemy[t2].get_is_render()==true) enemy_amo_rate[t2]++;
+                        }
+
+
+                        ++dot_amo_rate;
+                        ++count_appear_food1;
+                        ++count_appear_special_food;
+                        if (type_amo != 0) ++count_remain_special_amo;
 
                 }
+                 ++countedFrames;
+                    int frameTicks = capTimer.getTicks();
+                    if( frameTicks < SCREEN_TICK_PER_FRAME )
+                    {
+                        //Wait remaining time
+                        SDL_Delay( SCREEN_TICK_PER_FRAME - frameTicks );
+                    }
 			}
+			//Free resources and close SDL
+	close();
+std::cout<<"DONE";
+	freopen("highscore.txt","w",stdout);
+    std::cout<<HIGH_SCORE;
+
+	return 0;
 		}
 	}
 }
