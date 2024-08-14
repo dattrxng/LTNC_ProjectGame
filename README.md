@@ -21,10 +21,29 @@ Menu chính của game Dino Run được thiết kế đơn giản, thân thiệ
 Phần trên của menu hiển thị nổi bật HIGH SCORE với giá trị mặc định là 000. Phần này theo dõi điểm cao nhất mà người chơi đạt được.
 
 # **3. Các nhân vật ,items và enemy của Game**
-- Nhân vật : Chú khủng long màu đỏ
-- Items:
-- Enemy:
+- **Nhân vật** : Chú khủng long màu đỏ ( Dino )
+<p align="center">
+<img src="dino1_removebg\stand\dino_stand (1).png" width="200" >
+</p>
+ 
+ -  **Items**:
+
+| Tên | Hình ảnh | Chức năng |
+|:----------|:----------:|:----------:|
+| Heart | <img src="heart_removebg\heart .png" width="100" height = "100" > | Ăn vào giúp người chơi tăng thêm 1 mạng ( Tối đa 3 mạng ) |
+| Red Orb |  <img src="redorb_removebg\redorb (1).png " width="60" height = "60"> | Giúp nhân vật bắn ra 1 tia lửa có sát thương cao và có thể xóa bỏ các viên đạn mà quái vật bắn ra |
+| Purple Orb | <img src="purpleorb_removebg\purpleorb (1).png " width="50" height = "50"> | Giúp nhân vật bắn ra 1 tia tím có sát thương lớn , tiêu diệt mọi thứ trên đường đi của nó |
+| Yellow Orb | <img src="yelloworb_removebg\yelloworb (1).png " width="60" height = "60"> | Giúp nhân vật bắn ra 1 tia vàng có tốc độ cực nhanh |
+
+- **Enemy**
+
+| Tên | Hình ảnh |Tính năng |
+|:----------|:----------:|:----------:|
+| Zombie | <img src="zom_removebg\zom (1).png " width="60" height = "60"> | Là những con Zombie di chuyển tiến về phía dưới , thường xuất hiện theo đợt , nó sẽ di chuyển nhanh hơn khi level càng cao. Khi chạm vào zombie, nó sẽ biến mất nhưng nhân vật cũng sẽ mất một mạng. |
+| Monster | <img src="monster_removebg\monster.png " width="70" height = "70"> | Là những con Monster di chuyển tiến về phía dưới và bắn ra các tia đạn , nó sẽ di chuyển nhanh hơn khi level càng cao. Khi chạm vào monster hay tia đạn của nó nhân vật cũng sẽ mất một mạng. |
+
+
 # **4. Cách chơi Game**
 <p align="center">
-  <img src="image2.png" alt="Menu của Dino Run">
+  <img src="image2.png" >
 </p>
