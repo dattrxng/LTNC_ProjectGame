@@ -32,8 +32,7 @@ class Enemy
 
 		Enemy();
         ~Enemy();
-		//Takes key presses and adjusts the dot's velocity
-		//void handleEvent( SDL_Event& e );
+
 
 		//Moves the dot and checks collision
 		void move( );

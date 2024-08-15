@@ -43,7 +43,35 @@ Phần trên của menu hiển thị nổi bật HIGH SCORE với giá trị m�
 | Monster | <img src="monster_removebg\monster.png " width="70" height = "70"> | Là những con Monster di chuyển tiến về phía dưới và bắn ra các tia đạn , nó sẽ di chuyển nhanh hơn khi level càng cao. Khi chạm vào monster hay tia đạn của nó nhân vật cũng sẽ mất một mạng. |
 
 
-# **4. Cách chơi Game**
+
+# **4. Cách Chơi game**
+
+Trong **Dino Run**, bạn sẽ điều khiển một con khủng long với nhiệm vụ sống sót và tiêu diệt các quái vật xuất hiện trên đường đi. Dưới đây là các bước cơ bản để chơi:
+
 <p align="center">
   <img src="image2.png" >
 </p>
+
+1. **Di Chuyển**: Sử dụng các phím `W`, `A`, `S`, `D` để điều khiển khủng long di chuyển theo các hướng lên, xuống, trái, phải để tránh các chướng ngại vật và quái vật.
+
+2. **Tấn Công**: Nhấn chuột trái để bắn đạn và tiêu diệt các quái vật trên đường. Hãy chú ý tới số lượng đạn bạn còn!
+
+<p align="center">
+  <img src="fire.png"  >
+</p>
+
+3. **Tránh Quái Vật**:
+   - **Zombie**: Những con quái vật này di chuyển chậm nhưng có sức bền cao. Tránh va chạm trực tiếp với chúng vì mỗi lần va chạm sẽ làm bạn mất một mạng.
+   - **Monster**: Những con quái vật này di chuyển nhanh và có khả năng tấn công từ xa. Chúng nguy hiểm hơn vì vừa phải tránh chúng, vừa phải né đạn của chúng. Mỗi lần va chạm hoặc bị chúng bắn trúng sẽ làm bạn mất một mạng.
+
+4. **Mức Độ Khó**: Khi bạn tiến xa hơn trong trò chơi, các quái vật sẽ di chuyển nhanh hơn, tăng độ khó và yêu cầu kỹ năng né tránh cũng như tấn công chính xác hơn.
+
+5. **Tạm Dừng**: Bạn có thể tạm dừng trò chơi bất kỳ lúc nào để nghỉ ngơi hoặc suy nghĩ chiến thuật.
+
+<p align="center">
+  <img src="pause.png"  >
+</p>
+
+6. **Mục Tiêu**: Sống sót càng lâu càng tốt và đạt điểm số cao nhất có thể bằng cách tiêu diệt càng nhiều quái vật càng tốt mà không để mất hết số mạng của bạn.
+
+# **5. Source code**
