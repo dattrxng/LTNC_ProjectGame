@@ -1461,6 +1461,184 @@ int main( int argc, char* args[] )
                                 }
                         //SDL_RenderPresent( gRenderer );
                     }
+                                        //LEVEL 4
+                    if (point>=20 && level_render_success==true && level==3)
+                    {
+                        level = 4;
+                        point=0;
+                        count_time_render_level=0;
+                        level_render_success = false;
+
+                        for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                                {
+                                    m_enemy[t].set_type(1);
+                                    m_enemy[t].set_enemy_vel(ENEMY1_VELY);
+                                     m_enemy[t].set_enemy_velX(ENEMY1_VELY/(0.466));
+                                    m_enemy[t].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-300,-100));
+                                    m_enemy[t].set_is_move(true);
+                                    m_enemy[t].set_enemy1_heart(ENEMY1_HEART);
+                                }
+
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                                {
+                                    m2_enemy[t2].set_type(2);
+                                   // m2_enemy[t2].clear_amo();
+                                    m2_enemy[t2].set_enemy_vel(ENEMY2_VELY);
+                                    m2_enemy[t2].set_enemy_velX(ENEMY2_VELY/(0.466));
+                                    m2_enemy[t2].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-200,-100));
+                                    //enemy_amo_rate[t2] = 0;
+                                    m2_enemy[t2].set_is_move(true);
+                                    m2_enemy[t2].set_enemy2_heart(ENEMY2_HEART);
+                                }
+                    }
+                 if (count_time_render_level<=time_limit_render_level && level_render_success==false && level==4)
+                    {
+                        //std::cout<<1;
+                         SDL_Rect level_rect = {216,154,224,66};
+                        LevelTexture[3].render(73,180,355,96,&level_rect);//level4
+                        count_time_render_level++;
+                        NUM_ENEMY1=0;
+                        NUM_ENEMY2=6;
+                        for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                                {
+                                   if (t<NUM_ENEMY1)
+                                   {
+                                       m_enemy[t].set_is_render(true);
+                                       m_enemy[t].set_typemove(1);
+                                   }
+                                   else m_enemy[t].set_is_render(false);
+                                }
+
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                                {
+                                    if (t2<NUM_ENEMY2)
+                                    {
+                                        m2_enemy[t2].set_is_render(true);
+                                        m2_enemy[t2].set_typemove(1);
+                                    }
+                                    else m2_enemy[t2].set_is_render(false);
+                                }
+                        //SDL_RenderPresent( gRenderer );
+                    }
+                    //LEVEL 5
+                    if (point>=20 && level_render_success==true && level==4)
+                    {
+                        level = 5;
+                        point=0;
+                        count_time_render_level=0;
+                        level_render_success = false;
+
+                        for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                                {
+                                    m_enemy[t].set_type(1);
+                                    m_enemy[t].set_enemy_vel(ENEMY1_VELY);
+                                     m_enemy[t].set_enemy_velX(ENEMY1_VELY/(0.466));
+                                    m_enemy[t].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-300,-100));
+                                    m_enemy[t].set_is_move(true);
+                                    m_enemy[t].set_enemy1_heart(ENEMY1_HEART);
+                                }
+
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                                {
+                                    m2_enemy[t2].set_type(2);
+                                    //m2_enemy[t2].clear_amo();
+                                    m2_enemy[t2].set_enemy_vel(ENEMY2_VELY);
+                                    m2_enemy[t2].set_enemy_velX(ENEMY2_VELY/(0.466));
+                                    m2_enemy[t2].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-200,-100));
+                                    //enemy_amo_rate[t2] = 0;
+                                    m2_enemy[t2].set_is_move(true);
+                                    m2_enemy[t2].set_enemy2_heart(ENEMY2_HEART);
+                                }
+                    }
+                 if (count_time_render_level<=time_limit_render_level && level_render_success==false && level==5)
+                    {
+                        //std::cout<<1;
+                         SDL_Rect level_rect = {216,154,224,66};
+                        LevelTexture[4].render(73,180,355,96,&level_rect);//level5
+                        count_time_render_level++;
+                        NUM_ENEMY1=4;
+                        NUM_ENEMY2=4;
+                        for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                                {
+                                   if (t<NUM_ENEMY1)
+                                   {
+                                       m_enemy[t].set_is_render(true);
+                                       m_enemy[t].set_typemove(0);
+                                   }
+                                   else m_enemy[t].set_is_render(false);
+                                }
+
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                                {
+                                    if (t2<NUM_ENEMY2)
+                                    {
+                                        m2_enemy[t2].set_is_render(true);
+                                        m2_enemy[t2].set_typemove(0);
+                                    }
+                                    else m2_enemy[t2].set_is_render(false);
+                                }
+                        //SDL_RenderPresent( gRenderer );
+                    }
+                    //LEVEL 6
+                    if (point>=30 && level_render_success==true && level==5)
+                    {
+                        level = 6;
+                        point=0;
+                        count_time_render_level=0;
+                        level_render_success = false;
+
+                        for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                                {
+                                    m_enemy[t].set_type(1);
+                                    m_enemy[t].set_enemy_vel(ENEMY1_VELY);
+                                     m_enemy[t].set_enemy_velX(ENEMY1_VELY/(0.466));
+                                    m_enemy[t].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-300,-100));
+                                    m_enemy[t].set_is_move(true);
+                                    m_enemy[t].set_enemy1_heart(ENEMY1_HEART);
+                                }
+
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                                {
+                                    m2_enemy[t2].set_type(2);
+                                   // m2_enemy[t2].clear_amo();
+                                    m2_enemy[t2].set_enemy_vel(ENEMY2_VELY);
+                                    m2_enemy[t2].set_enemy_velX(ENEMY2_VELY/(0.466));
+                                    m2_enemy[t2].set_xy(GetRandom(0,SCREEN_WIDTH-50),GetRandom(-200,-100));
+                                    //enemy_amo_rate[t2] = 0;
+                                    m2_enemy[t2].set_is_move(true);
+                                    m2_enemy[t2].set_enemy2_heart(ENEMY2_HEART);
+                                }
+                    }
+                 if (count_time_render_level<=time_limit_render_level && level_render_success==false && level==6)
+                    {
+                        //std::cout<<1;
+                         SDL_Rect level_rect = {216,154,224,66};
+                        LevelTexture[5].render(73,180,355,96,&level_rect);//level6
+                        count_time_render_level++;
+                        NUM_ENEMY1=4;
+                        NUM_ENEMY2=4;
+                        for (int t=0;t<MAX_NUM_ENEMY_1;t++)
+                                {
+                                   if (t<NUM_ENEMY1)
+                                   {
+                                       m_enemy[t].set_is_render(true);
+                                       m_enemy[t].set_typemove(1);
+                                   }
+                                   else m_enemy[t].set_is_render(false);
+                                }
+
+                        for (int t2=0;t2<MAX_NUM_ENEMY_2;t2++)
+                                {
+                                    if (t2<NUM_ENEMY2)
+                                    {
+                                        m2_enemy[t2].set_is_render(true);
+                                        m2_enemy[t2].set_typemove(1);
+                                    }
+                                    else m2_enemy[t2].set_is_render(false);
+                                }
+                        //SDL_RenderPresent( gRenderer );
+                    }
+
                      if (count_time_render_level>time_limit_render_level)
                     {
                         level_render_success=true;
