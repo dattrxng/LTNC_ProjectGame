@@ -1,9 +1,16 @@
 # ***Dino Run***
-# **1.Giới thiệu game**
+# **Giới thiệu bản thân**
+- Họ và tên : Trương Sỹ Đạt
+- Mã sinh viên : 22028317
+- Lớp học phần : LTNC_INT2215 70
+ 
+# **Giới thiệu game**
 * "Dino Run" là một tựa game hành động đầy kịch tính và hấp dẫn, nơi người chơi sẽ điều khiển một chú khủng long dũng cảm trong một cuộc phiêu lưu đầy thử thách. Trên hành trình của mình, chú khủng long sẽ phải đối mặt với vô số quái vật nguy hiểm xuất hiện từ khắp nơi.
 
 * Nhiệm vụ của người chơi là điều khiển khủng long né tránh hoặc tiêu diệt những con quái vật bằng cách bắn chúng. Với khả năng di chuyển linh hoạt và kỹ năng chiến đấu mạnh mẽ, khủng long của bạn sẽ phải vượt qua những màn chơi đầy cạm bẫy và thách thức.
-# **2.Menu Game**
+
+Video giới thiệu về Game :
+# **Menu Game**
 Dưới đây là menu của trò chơi "Dino Run":
 
 <p align="center">
@@ -20,7 +27,7 @@ Menu chính của game Dino Run được thiết kế đơn giản, thân thiệ
 **Hiển Thị Điểm Cao**:
 Phần trên của menu hiển thị nổi bật HIGH SCORE với giá trị mặc định là 000. Phần này theo dõi điểm cao nhất mà người chơi đạt được.
 
-# **3. Các nhân vật ,items và enemy của Game**
+# **Các nhân vật ,items và enemy của Game**
 - **Nhân vật** : Chú khủng long màu đỏ ( Dino )
 <p align="center">
 <img src="dino1_removebg\stand\dino_stand (1).png" width="200" >
@@ -44,7 +51,7 @@ Phần trên của menu hiển thị nổi bật HIGH SCORE với giá trị m�
 
 
 
-# **4. Cách Chơi game**
+# **Cách Chơi game**
 
 Trong **Dino Run**, bạn sẽ điều khiển một con khủng long với nhiệm vụ sống sót và tiêu diệt các quái vật xuất hiện trên đường đi. Dưới đây là các bước cơ bản để chơi:
 
@@ -74,4 +81,40 @@ Trong **Dino Run**, bạn sẽ điều khiển một con khủng long với nhi�
 
 6. **Mục Tiêu**: Sống sót càng lâu càng tốt và đạt điểm số cao nhất có thể bằng cách tiêu diệt càng nhiều quái vật càng tốt mà không để mất hết số mạng của bạn.
 
-# **5. Source code**
+# **Source code**
+- **Enemy.h** : File này có thể chứa các định nghĩa và hàm liên quan đến quái vật trong game, như Zombie và Monster. Các thuộc tính có thể bao gồm vị trí, tốc độ di chuyển, và các hành vi như tấn công hoặc tương tác với người chơi.
+- **Shuriken.h** : File này quản lý các phi tiêu (shuriken) trong game. Nó bao gồm các thuộc tính như kích thước, vận tốc, và các hàm để di chuyển và hiển thị phi tiêu trên màn hình. Có nhiều loại phi tiêu khác nhau như thông thường, đỏ, vàng, và tím, mỗi loại có thể có hiệu ứng hoặc hình dạng riêng biệt.
+- **Food.h** : File này xử lý các vật phẩm (thức ăn) mà người chơi có thể thu thập trong game. Nó định nghĩa các loại thức ăn khác nhau như trái tim và các orb (quả cầu) màu đỏ, vàng, tím. File này bao gồm các phương thức để di chuyển thức ăn, hiển thị chúng, và phát hiện va chạm với người chơi. Thức ăn có thể tăng cường sức khỏe hoặc mang lại các lợi ích khác cho người chơi.
+- **LTimer.h** : File này chịu trách nhiệm về các chức năng thời gian trong game. Nó có thể bao gồm các tính năng để theo dõi thời gian đã trôi qua, bắt đầu và dừng đồng hồ, và quản lý các yếu tố thời gian trong game như thời gian hồi chiêu hoặc độ trễ cho các hành động và sự kiện.
+- **LTexture.h** : File này có nhiệm vụ quản lý và hiển thị các hình ảnh (textures) trên màn hình. Đây là một lớp bao bọc (wrapper class) giúp đơn giản hóa việc sử dụng các texture trong trò chơi, làm việc với SDL (Simple DirectMedia Layer) để tải, hiển thị, và quản lý các thuộc tính của texture.
+-  **Dot.h** : File này định nghĩa toàn bộ hành vi và hiển thị của nhân vật chính trong trò chơi, đảm bảo rằng nhân vật có thể di chuyển, bắn đạn, và tương tác với môi trường xung quanh.
+- **BTL.cpp** :  Là file xử lý mạch chính của trò chơi có các chức năng chính:
+  - Hàm init(): Đảm bảo rằng tất cả các thành phần cần thiết cho trò chơi được khởi tạo và sẵn sàng trước khi trò chơi bắt đầu. Nếu có lỗi trong bất kỳ bước nào, hàm sẽ trả về false để cho biết rằng quá trình khởi tạo không thành công.
+  - Hàm loadMedia(): Đảm bảo rằng tất cả các tài nguyên cần thiết cho trò chơi đều được tải trước khi trò chơi bắt đầu. Nếu có lỗi xảy ra khi tải tài nguyên, hàm sẽ thông báo lỗi và trả về false, cho phép bạn kiểm tra và khắc phục các vấn đề trước khi tiếp tục phát triển trò chơi.
+  - Hàm close():  Có chức năng giải phóng tất cả các tài nguyên  đã cấp phát và dọn dẹp các hệ thống SDL trước khi trò chơi kết thúc hoặc khi muốn thoát khỏi trò chơi.
+  - Hàm checkCollision(): Là công cụ chính để xử lý các va chạm trong trò chơi , giúp quản lý các tương tác giữa các đối tượng trong trò chơi và tạo ra các phản ứng thích hợp dựa trên các va chạm này.
+  - Hàm set_map(): Là một phần của giao diện người dùng trong trò chơi, cho phép người chơi lựa chọn và thay đổi giao diện của trò chơi thông qua việc nhấp chuột vào các nút cụ thể.
+  - Hàm tutorial(): Có nhiệm vụ hiển thị màn hình hướng dẫn và xử lý các sự kiện người dùng liên quan đến màn hình này.
+  - Hàm menu(): Hàm này quản lý màn hình chính của trò chơi, cho phép người chơi lựa chọn giữa chơi trò chơi, xem hướng dẫn, hoặc thoát khỏi trò chơi.
+  - Hàm pause(): Quản lý màn hình tạm dừng của trò chơi, cho phép người chơi thực hiện các hành động như quay lại màn hình chính, tiếp tục chơi, hoặc thoát khỏi trò chơi.
+  - Hàm game_over(): Quản lý màn hình kết thúc trò chơi, cho phép người chơi thực hiện các hành động như quay lại màn hình chính, chơi lại, hoặc thoát khỏi trò chơi.
+  - Hàm main():Đây là hàm chính của chương trình, nơi mọi thứ bắt đầu. Trong hàm này, trò chơi được khởi tạo và chạy qua các giai đoạn khác nhau như hiển thị menu, bắt đầu trò chơi, và xử lý các sự kiện từ người chơi. Vòng lặp chính của trò chơi cũng được thực hiện ở đây.
+
+# **Nguồn tham khảo và tài liệu**
+- Tham khảo chủ yếu trên [Lazy Foo ](https://lazyfoo.net/tutorials/SDL/)về các cách sử dụng các hàm trong SDL2.0
+
+- Học trên youtube: [Let's Make Game](https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx) về cách dùng máy trạng thái và cách vẽ và sử dụng map.
+
+- Lấy source ảnh và âm thanh, font chữ ở trên [Pinterest](https://www.pinterest.com/) và [itch.io](https://itch.io/)
+# **Hướng phát triển**
+- Tối ưu hóa game hơn.
+- Tạo ra nhiều màn chơi , quái vật. 
+- Thêm nhiều item làm tăng tính hấp dẫn.
+- Cập nhật tính năng nhân vật đa dạng hơn để người chơi lựa chọn.
+- Thêm tên của người chơi và bảng xếp hạng.
+# **Cách cài đặt game**
+Bước 1: Download file về máy
+
+Bước 2: Giải nén
+
+Bước 3: Tìm file *BTL.exe*, mở file ra và tận hưởng trò chơi.
