@@ -44,13 +44,10 @@ class LTexture
 };
 bool LTexture::loadFromFile( std::string path )
 {
-	//Get rid of preexisting texture
 	free();
 
-	//The final texture
 	SDL_Texture* newTexture = NULL;
 
-	//Load image at specified path
 	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
 	if( loadedSurface == NULL )
 	{
@@ -166,13 +163,6 @@ void LTexture::render( int x, int y, int Width, int Height, SDL_Rect* clip, doub
 {
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, Width, Height };
-
-	//Set clip rendering dimensions
-	//if( clip != NULL )
-	//{
-		//renderQuad.w = clip->w;
-		//renderQuad.h = clip->h;
-	//}
 
 	//Render to screen
 	SDL_RenderCopyEx( gRenderer, mTexture, clip, &renderQuad, angle, center, flip );

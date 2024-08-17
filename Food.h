@@ -13,10 +13,8 @@ class Food
         static const int FOOD_WIDTH =30;
 		static const int FOOD_HEIGHT = 30;
 
-		//Maximum axis velocity of the dot
 		static const int FOOD_VEL = 2;
 
-		//Initializes the variables
 		Food();
         ~Food();
 		//Moves the dot and checks collision
@@ -29,13 +27,10 @@ class Food
         int get_type () {return food_type;}
 		SDL_Rect getRect() {return Food_Rect;}
     private:
-        //The X and Y offsets of the dot
 		int mPosX, mPosY;
 
-		//The velocity of the dot
 		int mVelX, mVelY;
 
-		//Dot's collision box
 		SDL_Rect Food_Rect;
 
 		int food_type;
@@ -53,16 +48,13 @@ class Food
 };
 Food::Food()
 {
-    //Initialize the offsets
     mPosX = GetRandom(0,SCREEN_WIDTH-FOOD_WIDTH);
     mPosY = 0;
 
-	//Set collision box dimension
 	Food_Rect.w = FOOD_WIDTH;
 	Food_Rect.h = FOOD_HEIGHT;
 
     food_type = 0;
-    //Initialize the velocityGet
     mVelX = 0;
     mVelY = FOOD_VEL;
 }

@@ -12,28 +12,22 @@ class Dot
             LEFT = 3,
             RIGHT = 4
         };
-		//The dimensions of the dot
 		static const int DOT_WIDTH = 60;
 		static const int DOT_HEIGHT = 80;
-		//Maximum axis velocity of the dot
 		static const int DOT_VEL = 5;
         int L_DOT_AMO_VEL = 7;
 
 
-		//Initializes the variables
 		Dot();
         ~Dot();
-		//Takes key presses and adjusts the dot's velocity
 		void handleEvent( SDL_Event& e );
 
-		//Moves the dot and checks collision
 		void move();
 
         SDL_Rect getRect()
         {
             return Dot_Rect;
         }
-		//Shows the dot on the screen
 		void render();
         void MakeAmo();
         void reset();
