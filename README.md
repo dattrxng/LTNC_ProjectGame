@@ -9,7 +9,7 @@
 
 * Nhiệm vụ của người chơi là điều khiển khủng long né tránh hoặc tiêu diệt những con quái vật bằng cách bắn chúng. Với khả năng di chuyển linh hoạt và kỹ năng chiến đấu mạnh mẽ, khủng long của bạn sẽ phải vượt qua những màn chơi đầy cạm bẫy và thách thức.
 
-Video giới thiệu về Game :
+Video giới thiệu về Game : [Video  giới thiệu Game](https://drive.google.com/drive/u/0/folders/1Tm0ax03rtq9UqmLgQ2V8lMpQxj7qSS31)
 # **Menu Game**
 Dưới đây là menu của trò chơi "Dino Run":
 
